@@ -1,0 +1,285 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    background-image: url('https://www.sti.edu/uploads/Destination-Thumbnail-Photo-final.webp');
+    background-size: cover;
+}
+
+header {
+    background-color: #050d36;
+    color: white;
+    padding: 1em 0;
+    text-align: center;
+    display: flex;
+}
+
+.header-left {
+    width: 200px;
+}
+
+header h1 {
+    margin: 0;
+}
+
+.container {
+    display: flex;
+    flex: 1;
+    background: rgba(238, 238, 238, 0.8);
+}
+
+.sidebar {
+    background-color: rgb(245, 245, 33);
+    padding: 1em;
+    width: 250px;
+    transition: width 0.3s;
+    overflow-y: auto;
+}
+
+.sidebar.minimized {
+    width: 80px;
+    height: auto;
+    padding: 1em 0.5em;
+}
+
+#menuHeader {
+    height: 50px;
+    line-height: 50px;
+    margin-top: 0;
+}
+
+.sidebar.minimized #menuHeader {
+    display: none;
+}
+
+.sidebar.minimized ul li a span {
+    display: none;
+}
+
+.sidebar h2 {
+    margin-top: 0;
+    display: inline;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin: 1em 0;
+}
+
+.sidebar ul li a {
+    text-decoration: none; /* Remove underline from sidebar links */
+    color: #333;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.sidebar ul li a i {
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+.toggle-btn {
+    display: block;
+    margin-bottom: 1em;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    font-size: 1.5em;
+    color: black;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.sidebar ul li a:hover {
+    background-color: blue;
+    color: white;
+}
+
+.sidebar .toggle-btn {
+    display: block;
+    margin-bottom: 1em;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    font-size: 1.5em;
+}
+
+.main-content {
+    flex: 1;
+    padding: 1em;
+    color: rgb(0, 0, 0);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.add-product-form,
+.update-product-form {
+    width: 80%;
+    max-width: 500px;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.add-product-form h3,
+.update-product-form h3 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.add-product-form .box,
+.update-product-form .box {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box; /* Ensures padding is included in width calculation */
+}
+
+.add-product-form .box:focus,
+.update-product-form .box:focus {
+    border-color: #050d36;
+    outline: none; /* Removes the default outline on focus */
+}
+
+.add-product-form .box::placeholder,
+.update-product-form .box::placeholder {
+    color: #aaa;
+}
+
+.add-product-form .btn,
+.update-product-form .btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #050d36;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.add-product-form .btn:hover,
+.update-product-form .btn:hover {
+    background-color: #333;
+}
+
+.update-product-form .image-container {
+    text-align: center; /* Centers the image */
+}
+
+.update-product-form .image-container img {
+    display: inline-block; /* Ensures the image is centered */
+    max-width: 100%; /* Prevents the image from overflowing */
+}
+
+.product-list-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.product-table-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.product-table {
+    width: 80%;
+    max-width: 800px;
+    margin: 0 auto;
+    border-collapse: collapse;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.product-table th,
+.product-table td {
+    padding: 15px;
+    text-align: center; /* Ensures content is centered within cells */
+    border-bottom: 1px solid #ddd;
+    vertical-align: middle; /* Ensures content is vertically centered */
+}
+
+.product-table th {
+    background-color: #f2f2f2;
+}
+
+.product-table .product-image {
+    max-width: 100px;
+    height: auto;
+    max-height: 150px; /* Ensure image doesn't exceed this height */
+}
+
+.product-table .action-buttons {
+    display: flex;
+    flex-direction: column; /* Align buttons horizontally */
+    justify-content: center;
+    align-items: center; /* Center align items vertically */
+    gap: 10px; /* Add space between the buttons */
+}
+
+.product-table .btn-delete,
+.product-table .btn-update {
+    width: 100px; /* Ensures both buttons are the same width */
+    padding: 15px 0; /* Ensures consistent padding */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px; /* Ensures consistent font size */
+    text-decoration: none; /* Remove underline from buttons */
+}
+
+.product-table .btn-update {
+    background-color: #f39c12;
+    color: white;
+    text-decoration: none; /* Ensure no underline */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.product-table .btn-delete {
+    background-color: #e74c3c;
+    color: white;
+    text-decoration: none; /* Ensure no underline */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.product-table .btn-delete:hover {
+    background-color: #c0392b;
+}
+
+.product-table .btn-update:hover {
+    background-color: #e67e22;
+}
+
+
+footer {
+    background-color: #050d36;
+    color: white;
+    text-align: center;
+    padding: 1em 0;
+    margin-top: auto;
+    width: 100%;
+}
+
+.hidden {
+    display: none;
+}

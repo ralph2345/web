@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Disable Text Field Based on Dropdown Selection</title>
+<main class="main-content">
+    
+        <!-- Updating products form -->
+        <?php if ($is_admin): ?>
+        <section class="update-form-container hidden" id="updateFormContainer">
+            <?php
+            if (isset($_GET['edit'])) {
+                $edit_id = $_GET['edit'];
+                $edit_query = mysqli_query($conn, "SELECT * FROM `product` WHERE `Merchandise ID` = $edit_id");
+                if (mysqli_num_rows($edit_query) > 0) {
+                    while ($fetch_edit = mysqli_fetch_assoc($edit_query)) {
+                        // Determine whether the category is "Accessories" to disable size fields
+                        $disableSizes = $fetch_edit['category'] === 'Accessories';
+            ?>
+            <div class="update-product-form">
+                <h3>Update Product</h3>
+                <div class="image-container">
+                    <img src="<?php echo htmlspecialchars($fetch_edit['image']); ?>" height="200" alt="">
+                </div>
+                <form action="Product.php" method="post" enctype="multipart/form-data" onsubmit="return validateImage()">
+                    <input type="hidden" name="update_p_id" value="<?php echo $fetch_edit['Merchandise ID']; ?>">
+                    <input type="text" class="box" required name="update_p_name" value="<?php echo htmlspecialchars($fetch_edit['name']); ?>" placeholder="Enter the product name">
+                    <input type="number" min="0" class="box" required name="update_p_price" value="<?php echo htmlspecialchars($fetch_edit['price']); ?>" placeholder="Enter the product price">
+                    <input type="number" min="0" class="box size-field" required name="update_p_small_stock" value="<?php echo htmlspecialchars($fetch_edit['small_stock']); ?>" placeholder="Enter the small stock" <?php if ($disableSizes) echo 'disabled'; ?>>
+                    <input type="number" min="0" class="box size-field" required name="update_p_medium_stock" value="<?php echo htmlspecialchars($fetch_edit['medium_stock']); ?>" placeholder="Enter the medium stock" <?php if ($disableSizes) echo 'disabled'; ?>>
+                    <input type="number" min="0" class="box size-field" required name="update_p_large_stock" value="<?php echo htmlspecialchars($fetch_edit['large_stock']); ?>" placeholder="Enter the large stock" <?php if ($disableSizes) echo 'disabled'; ?>>
+                    <input type="number" min="0" class="box size-field" required name="update_p_xl_stock" value="<?php echo htmlspecialchars($fetch_edit['xl_stock']); ?>" placeholder="Enter the XL stock" <?php if ($disableSizes) echo 'disabled'; ?>>
+                    <input type="number" min="0" class="box size-field" required name="update_p_xxl_stock" value="<?php echo htmlspecialchars($fetch_edit['xxl_stock']); ?>" placeholder="Enter the XXL stock" <?php if ($disableSizes) echo 'disabled'; ?>>
+                    <select name="product_category" class="box" id="productCategory" onchange="toggleSizeFields('update')" required>
+                        <option value="Top" <?php echo $fetch_edit['category'] == 'Top' ? 'selected' : ''; ?>>Top</option>
+                        <option value="Bottom" <?php echo $fetch_edit['category'] == 'Bottom' ? 'selected' : ''; ?>>Bottom</option>
+                        <option value="Set of Uniform" <?php echo $fetch_edit['category'] == 'Set of Uniform' ? 'selected' : ''; ?>>Set of Uniform</option>
+                        <option value="Accessories" <?php echo $fetch_edit['category'] == 'Accessories' ? 'selected' : ''; ?>>Accessories</option>
+                    </select>
+                    <input type="file" class="box" required name="update_p_image" accept="image/png, image/jpg, image/jpeg, image/jfif">
+                    <button type="submit" name="update_product" class="btn">Update the product</button>
+                    <button type="reset" id="closeEdit" class="btn">Cancel</button>
+                </form>
+            </div>
+            <?php
+                    }
+                }
+                echo "<script>document.getElementById('updateFormContainer').classList.remove('hidden');</script>";
+            }
+            ?>
+        </section>
+        <?php endif; ?>
+
+    <script>
+        function toggleSizeFields() {
+            var category = document.getElementById('productCategory').value;
+            var sizeFields = document.querySelectorAll('.size-field');
+            if (category === 'Accessories') {
+                sizeFields.forEach(function(field) {
+                    field.disabled = true;
+                });
+            } else {
+                sizeFields.forEach(function(field) {
+                    field.disabled = false;
+                });
+            }
+        }
+        // Call toggleSizeFields initially to set the initial state based on the selected category
+        toggleSizeFields();
+    </script>
+

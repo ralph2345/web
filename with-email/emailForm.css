@@ -1,0 +1,90 @@
+.form-wrapper {
+    width: 900px;
+    height: 400px; /* Adjusted height for spacing */
+    top: 5px;
+    border: 1px none;
+    padding: 15px;
+    box-sizing: border-box;
+    background-color: #fff; /* Background color for form wrapper */
+    position: relative;
+}
+
+h2 {
+    top: 200px;
+    left: 100px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.form-group {
+    position: absolute;
+}
+
+.email-group {
+    top: 30px;
+    left: 20px;
+    width: 275px;
+}
+
+.subject-group {
+    top: 120px; /* Added spacing between email and subject */
+    left: 20px;
+    width: 275px;
+}
+
+.image-group {
+    top: 210px; /* Added spacing between subject and image */
+    left: 20px;
+    width: 275px;
+}
+
+.message-group {
+    top: 20px;
+    left: 350px; /* Added spacing between left form elements and message */
+    width: 500px; /* Adjusted width for message textarea */
+}
+
+input[type="email"],
+input[type="text"],
+textarea,
+input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #000;
+    box-sizing: border-box;
+}
+
+textarea {
+    resize: none;
+    height: 300px; /* Fixed height for textarea */
+    width: 500px;
+}
+
+.submit-button {
+    position: absolute;
+    top: 360px; /* Align with the bottom of the message textarea */
+    left: 750px; /* Adjusted position for button */
+    width: 100px;
+    padding: 10px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.submit-button:hover {
+    background-color: #0056b3;
+}
+
+.success {
+    color: green;
+}
+
+.error {
+    color: red;
+}
+
+.email-message {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+}
